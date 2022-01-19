@@ -1,6 +1,5 @@
-<%@page import="com.onlineplantbooking.daoImpl.UserDaoImpl"%>
-<%@page import="com.onlineplantbooking.model.User"%>
 <%@page import="com.onlineplantbooking.model.Orders"%>
+<%@page import="com.onlineplantbooking.model.User"%>
 <%@page import="java.util.List"%>
 <%@page import="com.onlineplantbooking.daoImpl.OrdersDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -9,7 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>plant Booking</title>
+<title>orderCancel</title>
 <style>
 table,tr,th, td {
   border: 5px solid black;
@@ -24,7 +23,12 @@ body{
 td{
 font-size:150%
 } 
-.menu-bar{
+
+.one{
+ top :100px;
+ margin-left:300px;
+ } 
+ .menu-bar{
     background:#ace600;
     text-align: center;
 }
@@ -43,29 +47,36 @@ padding: 4px;
     text-decoration:none;
     font-size: 20px;
 }
-
-.one{
- top :100px;
- margin-left:300px;
-
- } 
-   
+ 
+ 
+ 
 </style>
 </head>
 <body>
+
 <nav>
 <div class="menu-bar">
-        <ul>
-            <li ><a href="homePage.jsp">HOME</a></li>
-            <li><a href="aboutus.jsp">ABOUT</a></li>
-            <li><a href="contactus.jsp">CONTACT</a></li>
-            <li><a href="ordercancel.jsp">CANCELORDER</a>        
-    </ul>
-    </div>
-
+<ul>
+<li ><a href="homePage.jsp">HOME</a></li>
+<li><a href="aboutus.jsp">ABOUT</a></li>
+<li><a href="contactus.jsp">CONTACT</a></li>
+<li><a href="myProfile.jsp">PROFILE</a></li>
+<li><a href="buyProduct.jsp">BUY</a></li>
+ <li><a href="ViewCancelOrder.jsp">CANCELHISTORY</a></li>
+</ul> 
+</div>
 </nav>
+<%if(session.getAttribute("cancel")!=null){ %>
+<h1> order Cancelled successfully</h1>
+<%session.removeAttribute("cancel"); %>
+<%} %>
+<%if(session.getAttribute("refund")!=null){ %>
+<h1>amount refunded to your wallet</h1>
+<%session.removeAttribute("refund"); %>
+<%} %>
+
+<h1 style="text-align: left;"> Cancel Order</h1>
 <div class="one">
-<h1 style="text-align: left;"> Show Order</h1>
 <table>
 <tr>
 <td><b>User Name</b></td>
@@ -73,27 +84,29 @@ padding: 4px;
 <td><b>Quantity</b></td>
 <td><b>Price</b></td>
 <td><b>Order Date</b></td>
+<td><b>cancel</b>
 </tr>
+<%
+User user=(User)session.getAttribute("currentUser");
+OrdersDaoImpl orderDao=new OrdersDaoImpl();
 
-<%OrdersDaoImpl orderDao=new OrdersDaoImpl();
-List<User> userList=(List<User>) session.getAttribute("UpdateList");
 
-List<Orders> orderList=orderDao.ShowOrder(userList.get(0));
+List<Orders> orderList=orderDao.ShowOrders(user);
 for(int i=0;i<orderList.size();i++){
 	Orders order=orderList.get(i);
 %>
 <tr>
+
 <td><%= order.getUser().getName()%></td>
 <td><%= order.getProduct().getPlantName() %></td>
 <td><%= order.getQuantity() %></td>
 <td><%= order.getTotalPrice() %></td>
 <td><%= order.getOrderDate() %></td>
+<td><a href="ordercancelserv?orderid=<%=order.getOrderid() %>&price=<%= order.getTotalPrice()%>">cancel</a></td>
 </tr>
+
 <%} %>
+
 </table>
-<br><br>
-</div>
-<center><strong><h2>Wallet Balane:</h2></strong><lable><%=userList.get(0).getWallet() %></lable></center>
-<!--  <a href="rechargeWallet.jsp">Wallet</a> -->
 </body>
 </html>

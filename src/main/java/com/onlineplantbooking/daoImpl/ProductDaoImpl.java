@@ -34,7 +34,6 @@ public class ProductDaoImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	  System.out.println(productList);
 		return productList;
 		   	  
     	  
@@ -123,7 +122,6 @@ public class ProductDaoImpl {
 					PreparedStatement pstmt = con.prepareStatement(deleteQuery);
 					pstmt.setInt(1, plantId);
 					int i = pstmt.executeUpdate();
-					System.out.println(i + "row deleted");
 					pstmt.close();
 					con.close();
 				}
@@ -140,10 +138,32 @@ public class ProductDaoImpl {
 					pstmt.setString(4,product.getCategoryName());
 					pstmt.setString(5,product.getImage());
 			        pstmt.executeUpdate();
-					System.out.println("value inserted");
 							
 				}
-					
+	public List<Product> filterPlant(String search){
+		List<Product> plantList=new ArrayList<Product>();
+		Product product=null;
+		String Query="select * from product_details where PLANT_NAME like '"+search+"%' or  CATEGORY_NAME like '"+search+"%'"; 
+		ConnectionUtil conUtil=new ConnectionUtil();
+		Connection con=ConnectionUtil.getDbConnection();
+		try {
+			Statement stmt=con.createStatement();
+			ResultSet rs=stmt.executeQuery(Query);
+			while(rs.next())
+			{
+				product=new Product(rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5));
+			    plantList.add(product);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return plantList;
+		
+	}				
+				    
 					
 						
 					}

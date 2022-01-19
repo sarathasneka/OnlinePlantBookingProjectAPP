@@ -1,14 +1,11 @@
-<%@page import="java.util.ArrayList"%>
 <%@page import="com.onlineplantbooking.model.User"%>
-<%@page import="java.util.List"%>
-<%@page import="com.onlineplantbooking.daoImpl.UserDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>user profile</title>
+<title>Insert title here</title>
 <style>
 body{
     
@@ -16,8 +13,9 @@ body{
     background-repeat:no repeat;
     background-size: cover;
     }
- .one{
- top :50px;
+    
+.one{
+ top :100px;
  margin-left:600px;
 
  } 
@@ -41,24 +39,11 @@ padding: 4px;
     font-size: 20px;
 }
     
-</style>
+</style>   
+   
 </head>
 <body>
-
-<%
-UserDaoImpl userDao=new UserDaoImpl();
-int userId=(int)session.getAttribute("userId");
-List<User> userList=new ArrayList<User>();
-userList=userDao.myProfile(userId);
-
-
-%>
-<%
-int i=0;
-for(User showUser:userList){
-	i++;
-	%>
-	<nav>
+<nav>
 <div class="menu-bar">
         <ul>
             <li ><a href="homePage.jsp">HOME</a></li>
@@ -69,21 +54,18 @@ for(User showUser:userList){
     </div>
 
 </nav>
-	<div class="one">
-    <h1 style="text-align: left;">My Profile</h1>
-	<b>Name:</b><%=showUser.getName() %><br><br>
-	<b>EmailId:</b><%= showUser.getEmailId() %><br><br>
-	<b>Password:</b><%= showUser.getPassword() %><br><br>
-	<b>Mobile Number:</b><%=showUser.getMobileNumber() %><br><br>
 
-	<b>Wallet:</b><%= showUser.getWallet() %><br><br>
-	<a href="rechargeWallet.jsp">Recharge Wallet</a>
-	</div>
-<%
-}
+<%User user=(User) session.getAttribute("currentUser");%>
+<form action="rechargeWallet">
+<div class="one">
+<h2>Recharge your Wallet</h2>       
+ <label for="Amount">Amount:</label><br>
+ <input type="text" name="amount" id="amount" placeholder="Enter Amount" Pattern="[1-9][0-9]+" maxlength="5" min="1" required><br><br>
+         
+<button type="submit">Recharge Wallet</button><br><br>
+         
 
-%>
-
-
+</div>
+</form>
 </body>
 </html>

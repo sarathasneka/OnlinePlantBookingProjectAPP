@@ -114,6 +114,10 @@ public class User {
 			this.wallet=wallet;
 			// TODO Auto-generated constructor stub
 		}
+		public User(Double wallet2, String email) {
+			this.wallet=wallet2;
+			this.emailId=email;
+		}
 		@Override
 		public String toString() {
 			return "User [name=" + name + ", emailId=" + emailId + ", password=" + password + ", mobileNumber="

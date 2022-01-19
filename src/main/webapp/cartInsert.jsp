@@ -24,19 +24,14 @@ int plantId=Integer.parseInt(request.getParameter("plantId"));
 %>
 </style>
 <form action="InserCartServlet" >
-<h2>Plant Id</h2><input type="text" value="<%=plantId %>" name="plantId"><br><br>
-<h2>Plant Name</h2><input type="text" value="<%=plantName %>" name="plantname"><br><br>
-<h2>Plant Price</h2><input type="text" value="<%=price %>" name="Price"><br><br>
+
+<h2><b>Plant Id</b></h2><input type="text" value="<%=plantId %>" name="plantId"><br><br>
+<h2><b>Plant Name</b></h2><input type="text" value="<%=plantName %>" name="plantname"><br><br>
+<h2><b>Plant Price</b></h2><input type="text" value="<%=price %>" name="Price"><br><br>
 <button type="submit"><b>submit</b></button><br><br>
 
+
 </form>
-
-
-
-
-
-
-
 
 
 </body>

@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
 		HttpSession session=request.getSession();
 		
 		String emailId=request.getParameter("loginemail");
@@ -59,12 +59,13 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(user.getUserId());
 		HttpSession session1=request.getSession();
 		session.setAttribute("userId", user.getUserId());
-		session1.setAttribute("currentUser",user);
+		
 		String name=null;
 		int userId=0;
 		
 		
 		if(role.equals("user")) {
+			 session1.setAttribute("currentUser",user);
              RequestDispatcher req=request.getRequestDispatcher("buyProduct.jsp");
              req.forward(request, response);
 			

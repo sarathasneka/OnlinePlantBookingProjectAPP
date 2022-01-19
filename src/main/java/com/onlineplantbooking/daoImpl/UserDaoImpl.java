@@ -227,16 +227,69 @@ public User findUser(String email) {
 	return user;
 	
 }
+
+
+//wallet update
+public int  updatewall(User user) {
+	
+	Connection con = ConnectionUtil.getDbConnection();
+	String query = "update user_details set wallet=wallet +  ? where email_id = ?";
+	
+	PreparedStatement pstm;
+	int i =0;
+	try {
+		
+		pstm = con.prepareStatement(query);
+		
+		pstm.setDouble(1, user.getWallet());
+		pstm.setString(2,user.getEmailId());
+		 i = pstm.executeUpdate();
+		pstm.executeUpdate("commit");
+		
+		return i;
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return i;
+}
+//update profile
+public void update(User user) {
+	String updateQuery="update user_details set user_name=?,email_id=?,user_password=?,mobile_number=?,address=? where email_id=?";
+	
+	Connection con = ConnectionUtil.getDbConnection();
+	try {
+		PreparedStatement pst=con.prepareStatement(updateQuery);
+		pst.setString(1, user.getName());
+		pst.setString(2, user.getEmailId());
+		pst.setString(3, user.getPassword());
+		pst.setLong(4,user.getMobileNumber());
+		pst.setString(5, user.getAddress());
+		
+		int i=pst.executeUpdate();
+		pst.close();
+		con.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	
+}
+
+
+
 public List<User> myProfile(int userId){
 	List<User> userList=new ArrayList<User>();
-	String profile="select  user_name,email_id,user_password,mobile_number,address from user_details where user_id=?";
+	String profile="select  * from user_details where user_id=?";
 	Connection con=ConnectionUtil.getDbConnection();
 	try {
 		PreparedStatement pstmt=con.prepareStatement(profile);
 		pstmt.setInt(1, userId);
 		ResultSet rs=pstmt.executeQuery();
 	while(rs.next()) {
-		User user=new User(rs.getString(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getString(5));
+		User user=new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getLong(5),rs.getString(6),rs.getString(7),rs.getDouble(8));
 		userList.add(user);
 	}
 	} catch (SQLException e) {
@@ -247,6 +300,47 @@ public List<User> myProfile(int userId){
 	return userList;
 	
 }
+public List<User> myProfileUpdate(int userId){
+	List<User> userList=new ArrayList<User>();
+	String profile="select  * from user_details where user_id=?";
+	Connection con=ConnectionUtil.getDbConnection();
+	try {
+		PreparedStatement pstmt=con.prepareStatement(profile);
+		pstmt.setInt(1, userId);
+		ResultSet rs=pstmt.executeQuery();
+	while(rs.next()) {
+		User user=new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getLong(5),rs.getString(6),rs.getString(7),rs.getDouble(8));
+		userList.add(user);
+	}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return userList;
+	
+}
+
+public boolean refundWallet(User user, int price) {
+	Connection con = ConnectionUtil.getDbConnection();
+	UserDaoImpl userdao = new UserDaoImpl();
+	int userId = userdao.findUserId(user);
+	String updateQuery1 = "update user_details set wallet=" + (user.getWallet() + price) + "where user_id="+user.getUserId();
+		
+	boolean flag = false;
+	try {
+		Statement stmt = con.createStatement();
+		flag = stmt.executeUpdate(updateQuery1) > 0;
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+
+	return flag;
+
+}
+
+
 }
 
 

@@ -50,14 +50,16 @@ padding: 4px;
 </style>
 </head>
 <body>
+<h1 style="text-align: center;"> Online Plant Shop</h1>
 <nav>
 <div class="menu-bar">
         <ul>
-            <li class="active">HOME</li>
+            
             <li><a href="login.jsp">LOGIN</a></li>
             <li><a href="index.jsp">REGISTER</a></li>
             <li><a href="aboutus.jsp">ABOUT</a></li>
-            <li><a href="contactus.jsp">CONTACT</a></li>        
+            <li><a href="contactus.jsp">CONTACT</a></li>   
+               
     </ul>
     </div>
     <br>

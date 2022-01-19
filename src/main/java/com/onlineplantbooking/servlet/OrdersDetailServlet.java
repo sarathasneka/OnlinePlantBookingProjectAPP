@@ -3,6 +3,7 @@ package com.onlineplantbooking.servlet;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,16 +35,24 @@ public class OrdersDetailServlet extends HttpServlet {
 			System.out.println(quantity);
 			int plantPrice = Integer.parseInt(request.getParameter("total"));
 			System.out.println(plantPrice);
+			session.setAttribute("total", plantPrice);
 			String address = request.getParameter("addresss");
 			System.out.println(address);
 
 			Orders order = new Orders(product, rs, quantity, plantPrice, address);
 
+			UserDaoImpl userDao=new UserDaoImpl();
 			OrdersDaoImpl orderDao = new OrdersDaoImpl();
 			int i=0;
+			
 			try {
-				i = orderDao.insertOrder(order);
-				if (i> 0) {
+				User user1 = orderDao.insertOrder(order);
+				int userId=user1.getUserId();
+				List<User> userList=userDao.myProfile(userId);
+				if (user1!=null) {
+					HttpSession  session1=request.getSession();
+
+					session1.setAttribute("UpdateList", userList);
 					response.sendRedirect("ShowOrder.jsp");
 					
 				} else {

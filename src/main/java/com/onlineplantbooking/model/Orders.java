@@ -3,13 +3,36 @@ package com.onlineplantbooking.model;
 import java.util.Date;
 
 public class Orders {
+	private int orderid;
 	private Product product;
 	private User user;
 	private int quantity;
 	private int totalPrice;
 	private String address;
 	private Date orderDate;
+	private String orderStatus;
 	
+	public Orders( int orderid,Product product, User user, int quantity, int totalPrice, String address, Date orderDate,
+			String orderStatus) {
+		super();
+		this.orderid=orderid;
+		this.product = product;
+		this.user = user;
+		this.quantity = quantity;
+		this.totalPrice = totalPrice;
+		this.address = address;
+		this.orderDate = orderDate;
+		this.orderStatus = orderStatus;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
 	public Orders(Product product, User user, int quantity, int totalPrice, String address, Date orderDate) {
 		super();
 		this.product = product;
@@ -19,6 +42,15 @@ public class Orders {
 		this.address = address;
 		this.orderDate = orderDate;
 	}
+	
+	public int getOrderid() {
+		return orderid;
+	}
+
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
+	}
+
 	public Date getOrderDate() {
 		return orderDate;
 	}
@@ -63,6 +95,20 @@ public class Orders {
 		this.totalPrice = totalPrice;
 		this.address = address;
 	}
+
+	public Orders(int orderid, Product product, User user, int quantity, int totalPrice, String address,
+			Date orderDate) {
+		super();
+		this.orderid = orderid;
+		this.product = product;
+		this.user = user;
+		this.quantity = quantity;
+		this.totalPrice = totalPrice;
+		this.address = address;
+		this.orderDate = orderDate;
+	}
+
+	
 	
 	
 	

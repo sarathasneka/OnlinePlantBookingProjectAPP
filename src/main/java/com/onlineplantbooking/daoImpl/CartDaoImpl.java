@@ -19,8 +19,7 @@ public class CartDaoImpl {
     	ConnectionUtil con=new ConnectionUtil();
         Connection c1=con.getDbConnection();
         PreparedStatement p1;
-        System.out.println(cart.getUserId());
-        System.out.println(cart.getPlantId());
+       
         try {
 			p1=c1.prepareStatement(insertQuery);
 			p1.setInt(1,cart.getUserId());
@@ -48,7 +47,7 @@ public List<Product> fetchCart(int userId){
 		pstmt.setInt(1, userId);
 		ResultSet rs=pstmt.executeQuery();
 		while(rs.next()) {
-			System.out.println("hlo21"+rs.getString(2));
+			
 			productList.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5)));
 			
 		}

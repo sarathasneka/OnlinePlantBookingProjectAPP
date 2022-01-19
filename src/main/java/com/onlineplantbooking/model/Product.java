@@ -97,6 +97,10 @@ public class Product {
 		this.image = image2;
 	
 	}
+	public Product(int int1) {
+		// TODO Auto-generated constructor stub
+		this.plantId=int1;
+	}
 	@Override
 	public String toString() {
 		return "Product [plantName=" + plantName + ", plantDescription=" + plantDescription + ", plantPrice="

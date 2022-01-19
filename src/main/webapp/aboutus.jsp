@@ -22,7 +22,7 @@ font-size:120%
     
 </style>
 </head>
-
+<h1 style="text-align: center;">About Us</h1>
 <body>
 <p>Plants are really important for the planet and for all living things.</p> 
 <p>Plants absorb carbon dioxide and release oxygen from their leaves, which humans and other animals need to breathe.</p> 

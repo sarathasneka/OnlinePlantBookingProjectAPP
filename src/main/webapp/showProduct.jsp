@@ -44,12 +44,12 @@ td{
 <form>
 <table>
 <tr>
-<td>Plant</td>
-<td>Plant Name</td>
-<td>Plant Description</td>
-<td>category Name</td>
-<td>Plant Price</td>
-<td>Update</td>
+<td><b>Plant</b></td>
+<td><b>Plant Name</b></td>
+<td><b>Plant Description</b></td>
+<td><b>category Name</b></td>
+<td><b>Plant Price</b></td>
+<td><b>Update</b></td>
 </tr>
 
 <%ProductDaoImpl productDao=new ProductDaoImpl();

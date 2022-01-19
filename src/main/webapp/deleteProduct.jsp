@@ -11,18 +11,61 @@
 <style>
 table,td,tr
 {
-border:1px solid black;
+border:5px solid black;
 border-collapse:collapse;
 }
+
+body{
+    
+    background-image: url("table.jpg");
+    background-repeat:no repeat;
+    background-size: cover;
+    }
+td{
+font-size: 20px;
+}  
+   
+.menu-bar{
+    background:#ace600;
+    text-align: center;
+}
+.menu-bar ul{
+    display:inline-flex;
+    list-style: none;
+    color: #fff;
+}
+.menu-bar ul li
+{
+width: 100px;
+margin: 15px;
+padding: 4px;
+}
+.menu-bar ul li a{
+    text-decoration:none;
+    font-size: 20px;
+}
+      
 </style>
 </head>
 <body>
+<nav>
+<div class="menu-bar">
+        <ul>
+            <li ><a href="homePage.jsp">HOME</a></li>
+            <li><a href="admin.jsp">ADMIN</a></li>
+            <li><a href="aboutus.jsp">ABOUT</a></li>
+            <li><a href="contactus.jsp">CONTACT</a></li>        
+    </ul>
+    </div>
+
+</nav>
 <form action="updateProduct" method="post">
+<h1 style="text-align: center;">Delete Product</h1>
 <table>
 <tr>
-<td>Plant Id</td>
-<td>Plant Name</td>
-<td>Plant Description</td>
+<td><b>Plant Id</b></td>
+<td><b>Plant Name</b></td>
+<td><b>Plant Description</b></td>
 <td>category Name</td>
 <td>Plant Price</td>
 </tr>

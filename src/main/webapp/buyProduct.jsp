@@ -13,8 +13,6 @@
 
 <style>
 body{
-    
-    
     background-color: pink;
     background-repeat:no repeat;
     background-size: cover;
@@ -34,19 +32,69 @@ td {
   font-size: 20px;
 }
 
+.menu-bar{
+    background:#ace600;
+    text-align: center;
+}
+.menu-bar ul{
+    display:inline-flex;
+    list-style: none;
+    color: #fff;
+}
+.menu-bar ul li
+{
+width: 100px;
+margin: 15px;
+padding: 4px;
+}
+.menu-bar ul li a{
+    text-decoration:none;
+    font-size: 20px;
+}
+.searchbar {
+	position: relative;
+	top: 0px;
+	left: 1050px;
+}
+
+
 </style>
 </head>
 <body>
-<form action="cartServlet" method="post">
+<form action="search.jsp" >
+<h1 style="text-align: center;"> Show Plant</h1>
+<div class="searchbar">
+<label for="plan"></label> 
+<input type="text" name="search"	id="plan"> 
+<input type="submit" value="search">
+</div>
+</form>
+<form  method="post">
+<nav>
+<div class="menu-bar">
+        <ul>
+            <li><a href="homePage.jsp">HOME</a></li>
+            <li><a href="aboutus.jsp">ABOUT</a></li>
+            <li><a href="contactus.jsp">CONTACT</a></li> 
+            <li><a href="myProfile.jsp">PROFILE</a></li>
+            <li><a href="userCart.jsp">CART</a></li>
+            <li><a href="ordercancel.jsp">CANCELORDER</a></li>
+            <li><a href="ViewCancelOrder.jsp">CANCELHISTORY</a></li>
+    </ul>
+    </div>
+</nav>
+
+
+
 <table align="center">
 <tr>
-<td>Plant</td>
-<td>Plant Name</td>
-<td>Plant Description</td>
-<td>category Name</td>
-<td>Plant Price</td>
-<td>Buy Product</td>
-<td>Add To Cart</td>
+<td><b>Plant</b></td>
+<td><b>Plant Name</b></td>
+<td><b>Plant Description</b></td>
+<td><b>category Name</b></td>
+<td><b>Plant Price</b></td>
+<td><b>Buy Now</b></td>
+<td><b>Add To Cart</b></td>
 
 
 </tr>

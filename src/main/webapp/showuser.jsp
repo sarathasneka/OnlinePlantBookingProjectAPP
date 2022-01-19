@@ -25,6 +25,26 @@ body{
 td{
 font-size= 20px;
 } 
+.menu-bar{
+    background:#ace600;
+    text-align: center;
+}
+.menu-bar ul{
+    display:inline-flex;
+    list-style: none;
+    color: #fff;
+}
+.menu-bar ul li
+{
+width: 100px;
+margin: 15px;
+padding: 4px;
+}
+.menu-bar ul li a{
+    text-decoration:none;
+    font-size: 20px;
+}
+
 
 .center {
   margin-left: auto;
@@ -33,16 +53,28 @@ font-size= 20px;
 </style>
 </head>
 <body>
+<h1 style="text-align: center;"> Show User</h1>
+<nav>
+<div class="menu-bar">
+        <ul>
+            <li ><a href="homePage.jsp">HOME</a></li>
+            <li><a href="aboutus.jsp">ABOUT</a></li>
+            <li><a href="contactus.jsp">CONTACT</a></li> 
+            <li><a href="admin.jsp">ADMIN</a>       
+    </ul>
+    </div>
+
+</nav><br>
 <form>
 <table class="center">
 <tr>
-<td>User Id</td>
-<td>Name</td>
-<td>Email Id</td>
-<td>Password</td>
-<td>Mobile Number</td>
-<td>Address</td>
-<td>Delete</td>
+<td><b>User Id</b></td>
+<td><b>Name</b></td>
+<td><b>Email Id</b></td>
+<td><b>Password</b></td>
+<td><b>Mobile Number</b></td>
+<td><b>Address</b></td>
+<td><b>Delete</b></td>
 </tr>
 <%
 UserDaoImpl userDao=new UserDaoImpl();
@@ -53,7 +85,7 @@ UserDaoImpl userDao=new UserDaoImpl();
 	  
 	   User user=userList.get(i);
   
-	  %> 
+  %> 
 	  <tr>
 	  <td><%= user.getUserId() %></td>
 	  <td><%= user.getName() %></td>
